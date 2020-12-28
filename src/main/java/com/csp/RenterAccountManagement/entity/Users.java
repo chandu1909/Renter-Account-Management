@@ -1,37 +1,58 @@
-package com.csp.RenterAccountManagement.business;
+package com.csp.RenterAccountManagement.entity;
 
-public class Renter {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="users")
+public class Users {
+    @Column
+    @Id
+    private Long phoneNumber;
+
+    @Column
     private String firstName;
+    @Column
     private String LastName;
+    @Column
     private String email;
-    private String phoneNumber;
+    @Column
     private String addressLineOne;
+    @Column
     private String addressLinesTwo;
+    @Column
     private String city;
+    @Column
     private String state;
+    @Column
     private String country;
+    @Column
     private String zipCode;
-    private int numOfToolsToRent;
-    private int toolId;
 
-    public Renter() {
-
+    public Users() {
     }
 
-    public Renter(String firstName, String lastName, String email, String phoneNumber, String addressLineOne, String addressLinesTwo, String city, String state, String country, String zipCode, int numOfToolsToRent, int toolId) {
+    public Users(Long phoneNumber, String firstName, String lastName, String email, String addressLineOne, String addressLinesTwo, String city, String state, String country, String zipCode) {
+        this.phoneNumber = phoneNumber;
         this.firstName = firstName;
         LastName = lastName;
         this.email = email;
-        this.phoneNumber = phoneNumber;
         this.addressLineOne = addressLineOne;
         this.addressLinesTwo = addressLinesTwo;
         this.city = city;
         this.state = state;
         this.country = country;
         this.zipCode = zipCode;
-        this.numOfToolsToRent = numOfToolsToRent;
-        this.toolId = toolId;
+    }
+
+    public Long getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(Long phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getFirstName() {
@@ -56,14 +77,6 @@ public class Renter {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
     }
 
     public String getAddressLineOne() {
@@ -113,22 +126,4 @@ public class Renter {
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
-
-    public int getNumOfToolsToRent() {
-        return numOfToolsToRent;
-    }
-
-    public void setNumOfToolsToRent(int numOfToolsToRent) {
-        this.numOfToolsToRent = numOfToolsToRent;
-    }
-
-    public int getToolId() {
-        return toolId;
-    }
-
-    public void setToolId(int toolId) {
-        this.toolId = toolId;
-    }
-
-
 }
