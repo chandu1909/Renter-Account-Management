@@ -1,5 +1,7 @@
 package com.csp.RenterAccountManagement.entity;
 
+import lombok.NonNull;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,7 +17,7 @@ public class Users {
     @Column
     private String firstName;
     @Column
-    private String LastName;
+    private String lastName;
     @Column
     private String email;
     @Column
@@ -37,7 +39,7 @@ public class Users {
     public Users(Long phoneNumber, String firstName, String lastName, String email, String addressLineOne, String addressLinesTwo, String city, String state, String country, String zipCode) {
         this.phoneNumber = phoneNumber;
         this.firstName = firstName;
-        LastName = lastName;
+        this.lastName = lastName;
         this.email = email;
         this.addressLineOne = addressLineOne;
         this.addressLinesTwo = addressLinesTwo;
@@ -63,12 +65,12 @@ public class Users {
         this.firstName = firstName;
     }
 
-    public String getLastName() {
-        return LastName;
+    public String getlastName() {
+        return lastName;
     }
 
-    public void setLastName(String lastName) {
-        LastName = lastName;
+    public void setlastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
