@@ -1,19 +1,12 @@
 package com.csp.RenterAccountManagement.service;
 
-import com.csp.RenterAccountManagement.configs.HashCoder;
 import com.csp.RenterAccountManagement.entity.Users;
-import com.csp.RenterAccountManagement.repository.UserRegistration;
+import com.csp.RenterAccountManagement.repository.UserDb;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.security.SecureRandom;
-import java.util.HashMap;
-import java.util.Map;
 
 
 @Service
@@ -21,7 +14,7 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
     Logger LOGGER = LoggerFactory.getLogger(UserRegistrationServiceImpl.class);
 
     @Autowired
-    UserRegistration userRegistration;
+    UserDb userRegistration;
 
     @Autowired
     private PasswordEncoder passwordEncoder;

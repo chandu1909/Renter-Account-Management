@@ -1,8 +1,10 @@
 package com.csp.RenterAccountManagement.controller;
 
+import com.csp.RenterAccountManagement.entity.LoginCreds;
 import com.csp.RenterAccountManagement.entity.Users;
 import com.csp.RenterAccountManagement.responseBuilder.ResponseBuilder;
 import com.csp.RenterAccountManagement.service.GetUserService;
+import com.csp.RenterAccountManagement.service.UserLoginService;
 import com.csp.RenterAccountManagement.service.UserRegistrationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +23,8 @@ public class UserRegistrationController {
     UserRegistrationService userRegistrationService;
     @Autowired
     ResponseBuilder responseBuilder;
+    @Autowired
+    UserLoginService userLoginService;
 
     private final Logger LOGGER = LoggerFactory.getLogger(UserRegistrationController.class);
 
@@ -44,6 +48,16 @@ public class UserRegistrationController {
         }
         return responseBuilder.successResponse();
 
+    }
+
+    @PostMapping("/login")
+    public JSONObject loginUser(@RequestBody LoginCreds loginCreds) {
+        LoginCreds isLoginSuccess = this.userLoginService.loginUser(loginCreds);
+        if (isLoginSuccess == null) {
+            LOGGER.info("incorrect password entered..!");
+            return responseBuilder.loginFailed();
+        }
+        return responseBuilder.loginSuccess();
     }
 
 

@@ -27,4 +27,19 @@ public class ResponseBuilder {
         successResponse.put("code",0);
         return successResponse;
     }
+
+    public  JSONObject loginSuccess(){
+        JSONObject successLogin = new JSONObject();
+        successLogin.put("status",0);
+        successLogin.put("message","Login Successful");
+        return successLogin;
+    }
+
+    public JSONObject loginFailed(){
+        JSONObject failedLogin = new JSONObject();
+        failedLogin.put("status",1);
+        failedLogin.put("message","Incorrect password");
+
+        return failedLogin;
+    }
 }
