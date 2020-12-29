@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class Users {
     @Column
     @Id
@@ -32,11 +32,13 @@ public class Users {
     private String country;
     @Column
     private String zipCode;
+    @Column
+    private String password;
 
     public Users() {
     }
 
-    public Users(Long phoneNumber, String firstName, String lastName, String email, String addressLineOne, String addressLinesTwo, String city, String state, String country, String zipCode) {
+    public Users(Long phoneNumber, String firstName, String lastName, String email, String addressLineOne, String addressLinesTwo, String city, String state, String country, String zipCode, String password) {
         this.phoneNumber = phoneNumber;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -47,6 +49,7 @@ public class Users {
         this.state = state;
         this.country = country;
         this.zipCode = zipCode;
+        this.password = password;
     }
 
     public Long getPhoneNumber() {
@@ -127,5 +130,13 @@ public class Users {
 
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

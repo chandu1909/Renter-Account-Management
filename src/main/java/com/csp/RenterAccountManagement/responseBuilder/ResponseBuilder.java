@@ -1,10 +1,12 @@
 package com.csp.RenterAccountManagement.responseBuilder;
 
 import com.alibaba.fastjson.JSONObject;
+import org.springframework.stereotype.Component;
 
 /**
  * This class builds the different types of responses to the api calls so that frontend can understand what happened to the request.
  */
+@Component
 public class ResponseBuilder {
     /**
      *
