@@ -8,41 +8,39 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class UserRegistrationServiceImpl implements UserRegistrationService {
-    Logger LOGGER = LoggerFactory.getLogger(UserRegistrationServiceImpl.class);
+  Logger LOGGER = LoggerFactory.getLogger(UserRegistrationServiceImpl.class);
 
-    @Autowired
-    UserDb userRegistration;
+  @Autowired UserDb userRegistration;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+  @Autowired private PasswordEncoder passwordEncoder;
 
-
-    /**
-     * This method tries to store the data into the postgres database table if the phone number is not already in the database.
-     *
-     * @param user
-     * @return
-     */
-    @Override
-    public Users registerUser(Users user) {
-        if (!isDuplicate(user)) {
-            LOGGER.info("Your details have been saved and account has been created..!!");
-            try {
-                user.setPassword(passwordEncoder.encode(user.getPassword())); //to make sure we are not saving clear passwords
-                userRegistration.save(user);
-            } catch (Exception e) {
-                LOGGER.error("unhandled exception raised..!", e.getMessage());
-            }
-            return user;
-        }
-        return null;
+  /**
+   * This method tries to store the data into the postgres database table if the phone number is not
+   * already in the database.
+   *
+   * @param user
+   * @return
+   */
+  @Override
+  public Users registerUser(Users user) {
+    if (!isDuplicate(user)) {
+      LOGGER.info("Your details have been saved and account has been created..!!");
+      try {
+        user.setPassword(
+            passwordEncoder.encode(
+                user.getPassword())); // to make sure we are not saving clear passwords
+        userRegistration.save(user);
+      } catch (Exception e) {
+        LOGGER.error("unhandled exception raised..!", e.getMessage());
+      }
+      return user;
     }
+    return null;
+  }
 
-    private boolean isDuplicate(Users user) {
-        return userRegistration.existsById(user.getPhoneNumber());
-    }
-
+  private boolean isDuplicate(Users user) {
+    return userRegistration.existsById(user.getPhoneNumber());
+  }
 }

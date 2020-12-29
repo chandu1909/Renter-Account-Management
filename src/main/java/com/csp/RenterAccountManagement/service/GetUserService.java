@@ -6,7 +6,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class GetUserService {
-    @Autowired
-    UserDb userRegistration;
-
+  @Autowired UserDb userRegistration;
 }

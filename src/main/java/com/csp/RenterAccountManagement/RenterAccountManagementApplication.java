@@ -6,8 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class RenterAccountManagementApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(RenterAccountManagementApplication.class, args);
-    }
-
+  public static void main(String[] args) {
+    SpringApplication.run(RenterAccountManagementApplication.class, args);
+  }
 }
