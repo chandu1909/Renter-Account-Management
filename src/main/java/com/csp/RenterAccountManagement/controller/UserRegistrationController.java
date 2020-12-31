@@ -3,6 +3,7 @@ package com.csp.RenterAccountManagement.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.csp.RenterAccountManagement.entity.LoginCreds;
 import com.csp.RenterAccountManagement.entity.Users;
+import com.csp.RenterAccountManagement.entity.ValidateOtp;
 import com.csp.RenterAccountManagement.responseBuilder.ResponseBuilder;
 import com.csp.RenterAccountManagement.service.ForgotPasswordService;
 import com.csp.RenterAccountManagement.service.UserLoginService;
@@ -26,6 +27,7 @@ public class UserRegistrationController {
   @Autowired ResponseBuilder responseBuilder;
   @Autowired UserLoginService userLoginService;
   @Autowired ForgotPasswordService forgotPasswordService;
+
 
   private final Logger LOGGER = LoggerFactory.getLogger(UserRegistrationController.class);
 
@@ -68,8 +70,8 @@ public class UserRegistrationController {
   }
 
   @PostMapping("/verifyOtp")
-  public JSONObject verifyOtp(@RequestBody String otp, Long phoneNumber) throws IOException, URISyntaxException {
-    JSONObject otpVerificationStatus = forgotPasswordService.verifyOTP(otp,phoneNumber);
+  public JSONObject verifyOtp(@RequestBody ValidateOtp validateOtp) throws IOException, URISyntaxException {
+    JSONObject otpVerificationStatus = forgotPasswordService.verifyOTP(validateOtp.getOtp(),validateOtp.getUserName());
     return otpVerificationStatus;
   }
 }
