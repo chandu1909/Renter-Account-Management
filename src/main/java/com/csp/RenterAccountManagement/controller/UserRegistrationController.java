@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 @RestController
 @RequestMapping("/Users")
@@ -66,9 +67,9 @@ public class UserRegistrationController {
     return otpStatus;
   }
 
-  @PostMapping("/updatePassword")
-  public JSONObject forgotPassword(@RequestBody Long phoneNumber, String newPassword) {
-
-    return new JSONObject();
+  @PostMapping("/verifyOtp")
+  public JSONObject verifyOtp(@RequestBody String otp, Long phoneNumber) throws IOException, URISyntaxException {
+    JSONObject otpVerificationStatus = forgotPasswordService.verifyOTP(otp,phoneNumber);
+    return otpVerificationStatus;
   }
 }
