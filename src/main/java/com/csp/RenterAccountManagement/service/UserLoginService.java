@@ -1,9 +1,10 @@
 package com.csp.RenterAccountManagement.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.csp.RenterAccountManagement.entity.LoginCreds;
 import org.springframework.stereotype.Service;
 
 @Service
 public interface UserLoginService {
-  LoginCreds loginUser(LoginCreds loginCreds);
+  JSONObject loginUser(LoginCreds loginCreds);
 }

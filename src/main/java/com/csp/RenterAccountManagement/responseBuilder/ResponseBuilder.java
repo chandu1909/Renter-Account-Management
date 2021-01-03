@@ -27,14 +27,16 @@ public class ResponseBuilder {
 
   public JSONObject loginSuccess() {
     JSONObject successLogin = new JSONObject();
-    successLogin.put("status", 0);
+    successLogin.put("status", "Success");
+    successLogin.put("code", 0);
     successLogin.put("message", "Login Successful");
     return successLogin;
   }
 
   public JSONObject loginFailed() {
     JSONObject failedLogin = new JSONObject();
-    failedLogin.put("status", 1);
+    failedLogin.put("status", "Login failed");
+    failedLogin.put("code", 1);
     failedLogin.put("message", "Incorrect password");
 
     return failedLogin;

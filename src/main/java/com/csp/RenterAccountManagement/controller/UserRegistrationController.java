@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.csp.RenterAccountManagement.entity.LoginCreds;
 import com.csp.RenterAccountManagement.entity.Users;
 import com.csp.RenterAccountManagement.entity.ValidateOtp;
-import com.csp.RenterAccountManagement.responseBuilder.ResponseBuilder;
 import com.csp.RenterAccountManagement.service.ForgotPasswordService;
 import com.csp.RenterAccountManagement.service.UserLoginService;
 import com.csp.RenterAccountManagement.service.UserRegistrationService;
@@ -24,10 +23,8 @@ import java.net.URISyntaxException;
 public class UserRegistrationController {
 
   @Autowired UserRegistrationService userRegistrationService;
-  @Autowired ResponseBuilder responseBuilder;
   @Autowired UserLoginService userLoginService;
   @Autowired ForgotPasswordService forgotPasswordService;
-
 
   private final Logger LOGGER = LoggerFactory.getLogger(UserRegistrationController.class);
 
@@ -40,27 +37,25 @@ public class UserRegistrationController {
    */
   @PostMapping("/register")
   public JSONObject registerUser(@RequestBody Users user) {
-    Users personRegistered = null;
+    JSONObject personRegistered = new JSONObject();
     try {
       personRegistered = this.userRegistrationService.registerUser(user);
     } catch (Exception e) {
       e.printStackTrace();
     }
-    if (personRegistered == null) {
+    if (!personRegistered.get("code").equals(0)) {
       LOGGER.error("Account already exists. Cannot register");
-      return responseBuilder.getDuplicateUserResponse();
     }
-    return responseBuilder.successResponse();
+    return personRegistered;
   }
 
   @PostMapping("/login")
   public JSONObject loginUser(@RequestBody LoginCreds loginCreds) {
-    LoginCreds isLoginSuccess = this.userLoginService.loginUser(loginCreds);
-    if (isLoginSuccess == null) {
+    JSONObject isLoginSuccess = this.userLoginService.loginUser(loginCreds);
+    if (!isLoginSuccess.get("code").equals(0)) {
       LOGGER.info("incorrect password entered..!");
-      return responseBuilder.loginFailed();
     }
-    return responseBuilder.loginSuccess();
+    return isLoginSuccess;
   }
 
   @PostMapping("/forgotPassword")
@@ -70,8 +65,10 @@ public class UserRegistrationController {
   }
 
   @PostMapping("/verifyOtp")
-  public JSONObject verifyOtp(@RequestBody ValidateOtp validateOtp) throws IOException, URISyntaxException {
-    JSONObject otpVerificationStatus = forgotPasswordService.verifyOTP(validateOtp.getOtp(),validateOtp.getUserName());
+  public JSONObject verifyOtp(@RequestBody ValidateOtp validateOtp)
+      throws IOException, URISyntaxException {
+    JSONObject otpVerificationStatus =
+        forgotPasswordService.verifyOTP(validateOtp.getOtp(), validateOtp.getUserName());
     return otpVerificationStatus;
   }
 }
