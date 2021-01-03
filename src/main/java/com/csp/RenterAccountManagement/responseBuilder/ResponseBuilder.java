@@ -41,4 +41,19 @@ public class ResponseBuilder {
 
     return failedLogin;
   }
+
+  public JSONObject updateFailed() {
+    JSONObject updateFailed = new JSONObject();
+    updateFailed.put("status", "Failed");
+    updateFailed.put("code", 1);
+    updateFailed.put("message", "Password Update Failed");
+    return updateFailed;
+  }
+
+  public JSONObject updateSuccess() {
+    JSONObject updateSuccess = new JSONObject();
+    updateSuccess.put("status", "Success");
+    updateSuccess.put("code", 0);
+    return updateSuccess;
+  }
 }

@@ -2,8 +2,10 @@ package com.csp.RenterAccountManagement.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.csp.RenterAccountManagement.entity.LoginCreds;
+import com.csp.RenterAccountManagement.entity.UpdatePassword;
 import com.csp.RenterAccountManagement.entity.Users;
 import com.csp.RenterAccountManagement.entity.ValidateOtp;
+import com.csp.RenterAccountManagement.responseBuilder.ResponseBuilder;
 import com.csp.RenterAccountManagement.service.ForgotPasswordService;
 import com.csp.RenterAccountManagement.service.UserLoginService;
 import com.csp.RenterAccountManagement.service.UserRegistrationService;
@@ -70,5 +72,16 @@ public class UserRegistrationController {
     JSONObject otpVerificationStatus =
         forgotPasswordService.verifyOTP(validateOtp.getOtp(), validateOtp.getUserName());
     return otpVerificationStatus;
+  }
+
+  @PostMapping("/updatePassword")
+  public JSONObject updatePasswordController(@RequestBody UpdatePassword updatePassword) {
+    ResponseBuilder responseBuilder = new ResponseBuilder();
+    int status =
+        userLoginService.updatePassword(
+            updatePassword.getNewPassword(), updatePassword.getPhoneNumber());
+    if (status == 1) {
+      return responseBuilder.updateSuccess();
+    } else return responseBuilder.updateFailed();
   }
 }

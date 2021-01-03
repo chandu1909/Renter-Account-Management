@@ -7,4 +7,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface UserLoginService {
   JSONObject loginUser(LoginCreds loginCreds);
+
+  int updatePassword(String newPassword, Long phoneNumber);
 }

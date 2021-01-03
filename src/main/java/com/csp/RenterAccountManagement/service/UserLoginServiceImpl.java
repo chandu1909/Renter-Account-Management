@@ -31,4 +31,12 @@ public class UserLoginServiceImpl implements UserLoginService {
     }
     return responseBuilder.loginFailed();
   }
+
+  @Override
+  public int updatePassword(String newPassword, Long phoneNumber) {
+    JSONObject responseJson = new JSONObject();
+    String encryptedPassword = passwordEncoder.encode(newPassword);
+    int status = userDb.updatePassword(encryptedPassword, phoneNumber);
+    return status;
+  }
 }
