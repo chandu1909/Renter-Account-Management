@@ -5,6 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * @Author: Chandra sekhar Polavarapu @Description: This is the database model class (schema) for
+ * the user registration API
+ */
 @Entity
 @Table(name = "users")
 public class Users {

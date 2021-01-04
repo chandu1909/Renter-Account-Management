@@ -10,6 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+/**
+ * @Author: Chandra sekhar Polavarapu @Description: This class acts as a service class for Login and
+ * update update password APIs
+ */
 @Service
 public class UserLoginServiceImpl implements UserLoginService {
   Logger LOGGER = LoggerFactory.getLogger(UserLoginServiceImpl.class);

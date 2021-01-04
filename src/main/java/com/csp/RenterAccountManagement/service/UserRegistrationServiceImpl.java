@@ -10,6 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+/**
+ * @Author: Chandra Sekhar Polavarapu @Description: This is the service class to handle registration
+ * requests
+ */
 @Service
 public class UserRegistrationServiceImpl implements UserRegistrationService {
   Logger LOGGER = LoggerFactory.getLogger(UserRegistrationServiceImpl.class);

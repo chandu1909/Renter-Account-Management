@@ -21,6 +21,10 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Arrays;
 
+/**
+ * @Author: Chandra Sekhar Polavarapu @Description: This is the service class to handle the Send and
+ * verify OTPs functionality.
+ */
 @Service
 public class ForgotPasswordService {
   @Autowired SecretVariables secretVariables;

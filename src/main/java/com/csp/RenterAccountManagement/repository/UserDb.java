@@ -8,6 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 
+/**
+ * @Author: Chandra sekhar Polavarapu @Description: This is the repository class for this
+ * application and runs the queries for Database transactions.
+ */
 @Repository
 public interface UserDb extends CrudRepository<Users, Long> {
 

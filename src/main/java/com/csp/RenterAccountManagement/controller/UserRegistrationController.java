@@ -20,6 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
+/**
+ * @Author: Chandra Sekhar Polavarapu @Description: This is the controller class for all the APIs
+ * offered by this application
+ */
 @RestController
 @RequestMapping("/Users")
 public class UserRegistrationController {
